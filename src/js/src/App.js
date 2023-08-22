@@ -1,9 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
+import {getAllStudents} from './client';
 
 function App() {
+  <h1> hello world! </h1>
   return (
-    <h1> hello world! </h1>
+    getAllStudents().then(res => res.json().then(students => {
+      console.log(students);
+    }))
   );
 }
 

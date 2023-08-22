@@ -15,7 +15,7 @@ import java.util.UUID;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/students")    
 public class StudentController {
     @GetMapping
     public List<Student> getAllStudents(){
