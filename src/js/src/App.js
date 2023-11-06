@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Container from './Container';
 import {getAllStudents} from './client';
 import {
   Table
@@ -59,7 +60,11 @@ class App extends Component  {
         },
       ];
       
-      return (<Table dataSource={students} columns={columns} rowKey='studentId' />);
+      return (
+        <Container>
+      <Table dataSource={students} columns={columns} rowKey='studentId' pagination={false}/>
+      </Container>
+      );
 
     }
 
