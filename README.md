@@ -10,3 +10,5 @@ SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + 
 - Node.js v20.9
 - React 18.2.0
 - Ant Design 5.11.0
+- Postgres SQL (using docker) 16.0
+- Docker 

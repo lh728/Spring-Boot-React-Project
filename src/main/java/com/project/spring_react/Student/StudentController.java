@@ -20,6 +20,6 @@ public class StudentController {
     @GetMapping
     public List<Student> getAllStudents(){
         return List.of(new Student(UUID.randomUUID(),
-                "hongjin","lu","holu@tcd.ie",Student.Gender.Male));
+                "hongjin", "lu", "holu@tcd.ie", Student.Gender.Male));
     }
 }
