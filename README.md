@@ -12,3 +12,15 @@ SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + 
 - Ant Design 5.11.0
 - Postgres SQL (using docker) 16.0
 - Docker 
+
+
+
+### Database Related
+
+To enter the database created within Docker, use the following command:
+
+```shell
+docker exec -it <docker-postgresSQL-name> psql -U <The username you set.>
+```
+
+Alternatively, you can access PostgreSQL externally using an application like Navicat, connecting to the virtual machine's IP address + port 3306.
