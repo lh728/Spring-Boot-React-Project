@@ -24,3 +24,7 @@ docker exec -it <docker-postgresSQL-name> psql -U <The username you set.>
 ```
 
 Alternatively, you can access PostgreSQL externally using an application like Navicat, connecting to the virtual machine's IP address + port 3306.
+
+There is a database called `student`  we created.
+
+ 
