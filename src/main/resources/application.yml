@@ -1,3 +1,11 @@
 server:
   servlet:
     context-path: /api
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.56.10:5432/student
+    username: postgres
+    password: 425658167
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 30

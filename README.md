@@ -5,6 +5,7 @@ SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + 
 
 ### Version Description
 
+- Java 17
 - Spring Boot 3.1.2
 - Maven 3.9.2
 - Node.js v20.9
