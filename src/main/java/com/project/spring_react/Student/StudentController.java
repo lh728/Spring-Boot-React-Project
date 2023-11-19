@@ -17,9 +17,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/students")    
 public class StudentController {
+
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService){
+        this.studentService = studentService;
+    }
+
     @GetMapping
     public List<Student> getAllStudents(){
-        return List.of(new Student(UUID.randomUUID(),
-                "hongjin", "lu", "holu@tcd.ie", Student.Gender.Male));
+        return studentService.getAllStudents();
     }
 }
