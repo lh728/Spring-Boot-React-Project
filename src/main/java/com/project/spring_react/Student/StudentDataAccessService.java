@@ -18,7 +18,8 @@ public class StudentDataAccessService {
     }
 
     public List<Student> selectAllStudents(){
-        String sql = "";
+        String sql = "select student_id, first_name, last_name, email, gender " +
+                "from student";
         List<Student> students = jdbcTemplate.query(sql, (resultSet,i) -> {
             return null;
         });
