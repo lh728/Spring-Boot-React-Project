@@ -18,7 +18,7 @@ public class Student {
     private final Gender gender;
 
     enum Gender {
-        Male,Femal
+        MALE, FEMALE
     }
 
     public Student(UUID studentId, String firstName, String lastName, String email, Gender gender) {
