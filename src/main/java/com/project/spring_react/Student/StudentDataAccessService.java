@@ -2,7 +2,7 @@ package com.project.spring_react.Student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,7 +20,11 @@ public class StudentDataAccessService {
     public List<Student> selectAllStudents(){
         String sql = "select student_id, first_name, last_name, email, gender " +
                 "from student";
-        return jdbcTemplate.query(sql, (resultSet,i) -> {
+        return jdbcTemplate.query(sql, getStudentFromDB());
+    }
+
+    private static RowMapper<Student> getStudentFromDB() {
+        return (resultSet, i) -> {
             String studentIdStr = resultSet.getString("student_id");
             UUID studentId = UUID.fromString(studentIdStr);
             String firstName = resultSet.getString("first_name");
@@ -28,7 +32,7 @@ public class StudentDataAccessService {
             String email = resultSet.getString("email");
             String genderStr = resultSet.getString("gender").toUpperCase();
             Student.Gender gender = Student.Gender.valueOf(genderStr);
-            return new Student(studentId,firstName,lastName,email,gender);
-        });
+            return new Student(studentId, firstName, lastName, email, gender);
+        };
     }
 }
