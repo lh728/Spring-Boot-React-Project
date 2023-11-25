@@ -46,3 +46,4 @@ CREATE TABLE IF NOT EXISTS student (
     );
 ```
 
+The data will be randomly generated using <a href="https://www.mockaroo.com/">Mockaroo</a>, producing 1000 records. You can find my SQL file directly in the DB folder.

@@ -3,11 +3,5 @@ CREATE TABLE IF NOT EXISTS student (
     first_name varchar(100) NOT NULL,
     last_name varchar(100) NOT NULL,
     email varchar(100) NOT NULL UNIQUE,
-    gender varchar(6) NOT NULL
-    CHECK (
-    gender = 'MALE' OR
-    gender = 'male' OR
-    gender = 'FEMALE' OR
-    gender = 'female'
-          )
+    gender varchar(64) NOT NULL
     );

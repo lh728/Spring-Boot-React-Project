@@ -30,8 +30,7 @@ public class StudentDataAccessService {
             String firstName = resultSet.getString("first_name");
             String lastName = resultSet.getString("last_name");
             String email = resultSet.getString("email");
-            String genderStr = resultSet.getString("gender").toUpperCase();
-            Student.Gender gender = Student.Gender.valueOf(genderStr);
+            String gender = resultSet.getString("gender").toUpperCase();
             return new Student(studentId, firstName, lastName, email, gender);
         };
     }
