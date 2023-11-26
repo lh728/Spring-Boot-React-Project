@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Container from './Container';
+import Footer from './Footer';
 import {getAllStudents} from './client';
 import {
   Table,Avatar,Spin
@@ -90,7 +91,8 @@ class App extends Component  {
       
       return (
         <Container>
-      <Table dataSource={students} columns={columns} rowKey='studentId' />
+          <Table dataSource={students} columns={columns} rowKey='studentId' />
+          <Footer numberOfStudents={students.length}></Footer>
       </Container>
       );
 
