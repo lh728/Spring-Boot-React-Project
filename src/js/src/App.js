@@ -4,7 +4,7 @@ import Container from './Container';
 import Footer from './Footer';
 import {getAllStudents} from './client';
 import {
-  Table,Avatar,Spin
+  Table,Avatar,Spin,Modal
 } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -13,11 +13,24 @@ class App extends Component  {
 
   state = {
     students: [],
-    isFetching: false
+    isFetching: false,
+    isAddStudentModalVisisble: false
   }
 
   componentDidMount(){
     this.fetchStudents();
+  }
+
+  openAddStudentModalVisisble = () => {
+    this.setState({
+      isAddStudentModalVisisble:true
+    })
+  }
+
+  closeAddStudentModalVisisble = () => {
+    this.setState({
+      isAddStudentModalVisisble:false
+    })
   }
 
   fetchStudents = () => {
@@ -37,7 +50,7 @@ class App extends Component  {
 
   render(){ 
     
-    const {students,isFetching} = this.state;
+    const {students,isFetching,isAddStudentModalVisisble} = this.state;
 
 
     if(isFetching){
@@ -92,7 +105,11 @@ class App extends Component  {
       return (
         <Container>
           <Table dataSource={students} columns={columns} rowKey='studentId' />
-          <Footer numberOfStudents={students.length}></Footer>
+          <Modal title="Add New student" open={isAddStudentModalVisisble} 
+          onOk={this.openAddStudentModalVisisble} 
+          onCancel={this.closeAddStudentModalVisisble}
+          width={1000}></Modal>
+          <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModalVisisble}></Footer>
       </Container>
       );
 
