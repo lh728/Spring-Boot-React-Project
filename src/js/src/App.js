@@ -3,6 +3,7 @@ import './App.css';
 import Container from './Container';
 import Footer from './Footer';
 import {getAllStudents} from './client';
+import AddStudentForm from './Forms/AddStudentForm';
 import {
   Table,Avatar,Spin,Modal
 } from 'antd';
@@ -106,9 +107,11 @@ class App extends Component  {
         <Container>
           <Table dataSource={students} columns={columns} rowKey='studentId' />
           <Modal title="Add New student" open={isAddStudentModalVisisble} 
-          onOk={this.openAddStudentModalVisisble} 
-          onCancel={this.closeAddStudentModalVisisble}
-          width={1000}></Modal>
+            onOk={this.openAddStudentModalVisisble} 
+            onCancel={this.closeAddStudentModalVisisble}
+            width={1000}>
+            <AddStudentForm/>
+          </Modal>
           <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModalVisisble}></Footer>
       </Container>
       );
