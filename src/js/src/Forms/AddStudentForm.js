@@ -1,31 +1,32 @@
 import React, { Component } from "react";
 import { Formik } from "formik";
+import { Input, Button } from "antd";
+
+const inputButtonMargin = {marginBottom: '10px'};
 
 class AddStudentForm extends Component {
-    render(){
-        return(
-            <div>
-                <h1>Anywhere in your app!</h1>
-                <Formik
-                initialValues={{ email: '', password: '' }}
+    render() {
+        return (
+            <Formik
+                initialValues={{ firstName: '', lastName: '' , email: '', gender: ''}}
                 validate={values => {
                     const errors = {};
                     if (!values.email) {
-                    errors.email = 'Required';
+                        errors.email = 'Required';
                     } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
                     ) {
-                    errors.email = 'Invalid email address';
+                        errors.email = 'Invalid email address';
                     }
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                     setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
+                        alert(JSON.stringify(values, null, 2));
+                        setSubmitting(false);
                     }, 400);
                 }}
-                >
+            >
                 {({
                     values,
                     errors,
@@ -37,29 +38,50 @@ class AddStudentForm extends Component {
                     /* and other goodies */
                 }) => (
                     <form onSubmit={handleSubmit}>
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.email}
-                    />
-                    {errors.email && touched.email && errors.email}
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        value={values.password}
-                    />
-                    {errors.password && touched.password && errors.password}
-                    <button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </button>
+                        <Input
+                            name="firstName"
+                            style={inputButtonMargin}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.firstName}
+                            placeholder="First Name. E.g John"
+                        />
+                        {errors.firstName && touched.firstName && errors.firstName}
+                        <Input
+                            name="lastName"
+                            style={inputButtonMargin}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.lastName}
+                            placeholder="Last Name. E.g Smith"
+                        />
+                        {errors.lastName && touched.lastName && errors.lastName}
+                        <Input
+                            type="email"
+                            name="email"
+                            style={inputButtonMargin}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.email}
+                            placeholder="Email E.g example@gamil.com "
+                        />
+                        {errors.email && touched.email && errors.email}
+                        <Input
+                            name="gender"
+                            style={inputButtonMargin}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.gender}
+                            placeholder="Gender E.g Male or Female"
+                        />
+                        {errors.gender && touched.gender && errors.gender}
+                        <Button type="submit" disabled={isSubmitting}>
+                            Submit
+                        </Button>
                     </form>
                 )}
-                </Formik>
-            </div>
+            </Formik>
+
         );
     }
 }
