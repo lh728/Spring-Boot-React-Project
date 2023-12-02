@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { Formik } from "formik";
 import { Input, Button, Tag } from "antd";
 
-const inputButtonMargin = {marginBottom: '10px'};
-const tagStyle= {backgroundColor: '#f50', color: 'white', ...inputButtonMargin} ;
+const inputButtonMargin = { marginBottom: '10px' };
+const tagStyle = { backgroundColor: '#f50', color: 'white', ...inputButtonMargin };
 
 class AddStudentForm extends Component {
     render() {
         return (
             <Formik
-                initialValues={{ firstName: '', lastName: '' , email: '', gender: ''}}
+                initialValues={{ firstName: '', lastName: '', email: '', gender: '' }}
                 validate={values => {
                     const errors = {};
                     if (!values.firstName) {
@@ -45,6 +45,8 @@ class AddStudentForm extends Component {
                     handleBlur,
                     handleSubmit,
                     isSubmitting,
+                    submitForm,
+                    isValid
                     /* and other goodies */
                 }) => (
                     <form onSubmit={handleSubmit}>
@@ -56,7 +58,7 @@ class AddStudentForm extends Component {
                             value={values.firstName}
                             placeholder="First Name. E.g John"
                         />
-                        { errors.firstName && touched.firstName && <Tag style={tagStyle}>{errors.firstName}</Tag>}
+                        {errors.firstName && touched.firstName && <Tag style={tagStyle}>{errors.firstName}</Tag>}
                         <Input
                             name="lastName"
                             style={inputButtonMargin}
@@ -85,7 +87,10 @@ class AddStudentForm extends Component {
                             placeholder="Gender E.g Male or Female"
                         />
                         {errors.gender && touched.gender && <Tag style={tagStyle}>{errors.gender}</Tag>}
-                        <Button type="submit" disabled={isSubmitting}>
+                        <Button
+                            onClick={() => submitForm()}
+                            type="submit"
+                            disabled={isSubmitting | (touched && !isValid)}>
                             Submit
                         </Button>
                     </form>
