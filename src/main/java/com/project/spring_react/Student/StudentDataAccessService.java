@@ -34,4 +34,8 @@ public class StudentDataAccessService {
             return new Student(studentId, firstName, lastName, email, gender);
         };
     }
+
+    public int insertStudent(UUID uuid, Student student) {
+        return 0;
+    }
 }
