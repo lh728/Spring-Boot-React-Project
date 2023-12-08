@@ -105,7 +105,7 @@ class App extends Component  {
       
       return (
         <Container>
-          <Table dataSource={students} columns={columns} rowKey='studentId' />
+          <Table style={{marginBottom: '100px'}} dataSource={students} columns={columns} rowKey='studentId' />
           <Modal title="Add New student" open={isAddStudentModalVisisble} 
             onOk={this.openAddStudentModalVisisble} 
             onCancel={this.closeAddStudentModalVisisble}
