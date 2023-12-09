@@ -110,7 +110,12 @@ class App extends Component  {
             onOk={this.openAddStudentModalVisisble} 
             onCancel={this.closeAddStudentModalVisisble}
             width={1000}>
-            <AddStudentForm/>
+            <AddStudentForm
+              onSuccess={() => {
+                this.closeAddStudentModalVisisble();
+                this.fetchStudents();
+              }}
+            />
           </Modal>
           <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModalVisisble}></Footer>
       </Container>
