@@ -1,5 +1,6 @@
 package com.project.spring_react.Student;
 
+import com.project.spring_react.Exception.ApiRequestException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,7 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAllStudents(){
-
-        throw new IllegalStateException("can not get all students");
+        throw new ApiRequestException("can not get all students");
 //        return studentService.getAllStudents();
     }
 
