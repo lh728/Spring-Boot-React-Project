@@ -7,6 +7,7 @@ import AddStudentForm from './Forms/AddStudentForm';
 import {
   Table,Avatar,Spin,Modal
 } from 'antd';
+import { errorNotification } from './Notification';
 import { LoadingOutlined } from '@ant-design/icons';
 
 
@@ -46,10 +47,10 @@ class App extends Component  {
         });
       }))
       .catch(error => {
-        console.log(error.error.message);
+        errorNotification('Error',error.message)
         this.setState({
           isFetching:false
-        })
+        });
       });
   }
 
