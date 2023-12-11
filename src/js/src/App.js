@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Container from './Container';
 import Footer from './Footer';
-import {getAllStudents} from './client';
+import { getAllStudents } from './client';
 import AddStudentForm from './Forms/AddStudentForm';
 import {
-  Table,Avatar,Spin,Modal
+  Table, Avatar, Spin, Modal, Empty
 } from 'antd';
 import { errorNotification } from './Notification';
 import { LoadingOutlined } from '@ant-design/icons';
 
 
-class App extends Component  {
+class App extends Component {
 
   state = {
     students: [],
@@ -19,101 +19,61 @@ class App extends Component  {
     isAddStudentModalVisisble: false
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchStudents();
   }
 
   openAddStudentModalVisisble = () => {
     this.setState({
-      isAddStudentModalVisisble:true
+      isAddStudentModalVisisble: true
     })
   }
 
   closeAddStudentModalVisisble = () => {
     this.setState({
-      isAddStudentModalVisisble:false
+      isAddStudentModalVisisble: false
     })
   }
 
   fetchStudents = () => {
     this.setState({
-      isFetching:true
+      isFetching: true
     });
-    getAllStudents().then(res => 
+    getAllStudents().then(res =>
       res.json().then(students => {
         this.setState({
           students,
-          isFetching:false
+          isFetching: false
         });
       }))
       .catch(error => {
-        errorNotification('Error',error.message)
+        errorNotification('Error', error.message)
         this.setState({
-          isFetching:false
+          isFetching: false
         });
       });
   }
 
 
-  render(){ 
-    
-    const {students,isFetching,isAddStudentModalVisisble} = this.state;
+  render() {
+
+    const { students, isFetching, isAddStudentModalVisisble } = this.state;
 
 
-    if(isFetching){
-      return(
+    if (isFetching) {
+      return (
         <Container>
           <Spin
-            indicator={<LoadingOutlined  style={{ fontSize: 24,  }} spin/>}/>
+            indicator={<LoadingOutlined style={{ fontSize: 24, }} spin />} />
         </Container>
       )
     }
 
-    if(students && students.length){   
-      const columns = [
-        {
-          title:'',
-          key: 'avator',
-          render:(text,student) => {
-            return(
-            <Avatar size='large'>
-              {`${student.firstName.charAt(0).toUpperCase()}${student.lastName.charAt(0).toUpperCase()}`}
-            </Avatar>
-            );
-          }
-        },
-        {
-          title:'StudentId',
-          dataIndex:'studentId',
-          key:'studentId'
-        },
-        {
-          title:'First Name',
-          dataIndex:'firstName',
-          key:'firstName'
-        },
-        {
-          title:'Last Name',
-          dataIndex:'lastName',
-          key:'lastName'
-        },
-        {
-          title:'Email',
-          dataIndex:'email',
-          key:'email'
-        },
-        {
-          title:'Gender',
-          dataIndex:'gender',
-          key:'gender'
-        },
-      ];
-      
+    const commonElements = () => {
       return (
-        <Container>
-          <Table style={{marginBottom: '100px'}} dataSource={students} columns={columns} rowKey='studentId' />
-          <Modal title="Add New student" open={isAddStudentModalVisisble} 
-            onOk={this.openAddStudentModalVisisble} 
+        <div>
+          <Modal title="Add New student" open={isAddStudentModalVisisble}
+            onOk={this.openAddStudentModalVisisble}
             onCancel={this.closeAddStudentModalVisisble}
             width={1000}>
             <AddStudentForm
@@ -124,7 +84,56 @@ class App extends Component  {
             />
           </Modal>
           <Footer numberOfStudents={students.length} handleAddStudentClickEvent={this.openAddStudentModalVisisble}></Footer>
-      </Container>
+        </div>
+      )
+    }
+
+    if (students && students.length) {
+
+      const columns = [
+        {
+          title: '',
+          key: 'avator',
+          render: (text, student) => {
+            return (
+              <Avatar size='large'>
+                {`${student.firstName.charAt(0).toUpperCase()}${student.lastName.charAt(0).toUpperCase()}`}
+              </Avatar>
+            );
+          }
+        },
+        {
+          title: 'StudentId',
+          dataIndex: 'studentId',
+          key: 'studentId'
+        },
+        {
+          title: 'First Name',
+          dataIndex: 'firstName',
+          key: 'firstName'
+        },
+        {
+          title: 'Last Name',
+          dataIndex: 'lastName',
+          key: 'lastName'
+        },
+        {
+          title: 'Email',
+          dataIndex: 'email',
+          key: 'email'
+        },
+        {
+          title: 'Gender',
+          dataIndex: 'gender',
+          key: 'gender'
+        },
+      ];
+
+      return (
+        <Container>
+          <Table style={{ marginBottom: '100px' }} dataSource={students} columns={columns} rowKey='studentId' />
+          {commonElements()}
+        </Container>
       );
 
     }
@@ -132,7 +141,12 @@ class App extends Component  {
 
     return (
       <div className="App">
-        <h1> No Students found</h1>
+        <Container>
+          <Empty description={
+            <h1>No students found</h1>
+          }></Empty>
+          {commonElements()}
+        </Container>
       </div>
     );
   }
