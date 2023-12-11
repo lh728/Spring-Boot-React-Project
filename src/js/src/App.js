@@ -38,14 +38,19 @@ class App extends Component  {
     this.setState({
       isFetching:true
     });
-    getAllStudents().then((res) => {
+    getAllStudents().then(res => 
       res.json().then(students => {
         this.setState({
           students,
           isFetching:false
         });
-      })
-    });
+      }))
+      .catch(error => {
+        console.log(error.error.message);
+        this.setState({
+          isFetching:false
+        })
+      });
   }
 
 

@@ -24,7 +24,9 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAllStudents(){
-        return studentService.getAllStudents();
+
+        throw new IllegalStateException("can get all students");
+//        return studentService.getAllStudents();
     }
 
     @PostMapping

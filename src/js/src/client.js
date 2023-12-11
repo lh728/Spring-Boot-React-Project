@@ -1,6 +1,5 @@
 import fetch from 'unfetch';
 
-export const getAllStudents = () => fetch('api/students').then(checkStatus);
 
 export const checkStatus = (response) => {
     if (response.ok) {
@@ -14,6 +13,8 @@ export const checkStatus = (response) => {
         return Promise.reject(error);
     }
 }
+
+export const getAllStudents = () => fetch('api/students').then(checkStatus);
 
 export const addNewStudent = studnet => fetch('api/students', {
     headers: {
