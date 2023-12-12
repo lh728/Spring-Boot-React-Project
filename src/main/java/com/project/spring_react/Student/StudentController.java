@@ -1,6 +1,7 @@
 package com.project.spring_react.Student;
 
 import com.project.spring_react.Exception.ApiRequestException;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,11 @@ public class StudentController {
 
     @GetMapping
     public List<Student> getAllStudents(){
-        throw new ApiRequestException("can not get all students");
-//        return studentService.getAllStudents();
+        return studentService.getAllStudents();
     }
 
     @PostMapping
-    public void addNewStudent(@RequestBody Student student){
+    public void addNewStudent(@RequestBody @Valid Student student){
         studentService.addNewStudent(null ,student);
     }
 }

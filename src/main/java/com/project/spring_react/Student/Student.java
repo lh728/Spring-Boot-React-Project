@@ -1,6 +1,8 @@
 package com.project.spring_react.Student;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 import java.util.UUID;
@@ -16,9 +18,13 @@ import java.util.UUID;
 public class Student {
 
     private final UUID studentId;
+    @NotBlank
     private final String firstName;
+    @NotBlank
     private final String lastName;
+    @Email
     private final String email;
+    @NotBlank
     private final String gender;
 
     public Student(@JsonProperty("studentId") UUID studentId,

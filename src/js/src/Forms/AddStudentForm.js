@@ -90,7 +90,7 @@ const AddStudentForm = (props) => {
                     <Button
                         onClick={() => submitForm()}
                         type="submit"
-                        disabled={isSubmitting | (touched && !isValid)}>
+                        disabled={isSubmitting || Object.keys(touched).length !== 4 || !isValid}>
                         Submit
                     </Button>
                 </form>
