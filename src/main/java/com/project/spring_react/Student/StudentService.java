@@ -1,5 +1,7 @@
 package com.project.spring_react.Student;
 
+import com.project.spring_react.EmailValidator;
+import com.project.spring_react.Exception.ApiRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,11 @@ import java.util.UUID;
 public class StudentService {
 
     private final StudentDataAccessService studentDataAccessService;
+    private final EmailValidator emailValidator;
     @Autowired
-    public StudentService(StudentDataAccessService studentDataAccessService) {
+    public StudentService(StudentDataAccessService studentDataAccessService, EmailValidator emailValidator) {
         this.studentDataAccessService = studentDataAccessService;
+        this.emailValidator = emailValidator;
     }
 
     public List<Student> getAllStudents(){
@@ -22,6 +26,9 @@ public class StudentService {
 
     void addNewStudent(UUID studentId, Student student) {
         UUID uuid = Optional.ofNullable(studentId).orElse(UUID.randomUUID());
+        if(!emailValidator.test(student.getEmail())){
+            throw new ApiRequestException(student.getEmail() + " is not valid");
+        }
         studentDataAccessService.insertStudent(uuid,student);
     }
 

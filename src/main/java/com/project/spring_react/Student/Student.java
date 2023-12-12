@@ -22,7 +22,7 @@ public class Student {
     private final String firstName;
     @NotBlank
     private final String lastName;
-    @Email
+    @NotBlank
     private final String email;
     @NotBlank
     private final String gender;
