@@ -42,4 +42,9 @@ public class StudentDataAccessService {
                 student.getEmail(), student.getGender());
         return update;
     }
+
+    public boolean isEmailTaken(String email) {
+        String sql = "select exists ( select 1 from student where email = ?) " ;
+        return Boolean.TRUE.equals(jdbcTemplate.queryForObject(sql, new Object[]{email}, (result, i) -> result.getBoolean(1)));
+    }
 }

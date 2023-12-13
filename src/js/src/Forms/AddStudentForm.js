@@ -35,6 +35,11 @@ const AddStudentForm = (props) => {
                     props.onSuccess();
                     setSubmitting(false);
                 })
+                .catch(err => {
+                    props.onFailure(err);
+                }).finally(() => {
+                    setSubmitting(false);
+                })
             }}
         >
             {({
@@ -90,7 +95,7 @@ const AddStudentForm = (props) => {
                     <Button
                         onClick={() => submitForm()}
                         type="submit"
-                        disabled={isSubmitting || Object.keys(touched).length !== 4 || !isValid}>
+                        disabled={isSubmitting ||  !isValid}>
                         Submit
                     </Button>
                 </form>

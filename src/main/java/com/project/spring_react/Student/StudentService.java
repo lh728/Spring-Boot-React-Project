@@ -29,6 +29,10 @@ public class StudentService {
         if(!emailValidator.test(student.getEmail())){
             throw new ApiRequestException(student.getEmail() + " is not valid");
         }
+
+        if(studentDataAccessService.isEmailTaken(student.getEmail())){
+            throw new ApiRequestException(student.getEmail() + " is taken");
+        }
         studentDataAccessService.insertStudent(uuid,student);
     }
 
