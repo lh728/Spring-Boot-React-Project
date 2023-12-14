@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS course (
     course_id uuid PRIMARY KEY NOT NULL,
     name varchar(255) NOT NULL UNIQUE,
     description TEXT NOT NULL,
-    department varchar(255),
+    department varchar(255) NOT NULL,
     teacher_name varchar(100)
     );
 
