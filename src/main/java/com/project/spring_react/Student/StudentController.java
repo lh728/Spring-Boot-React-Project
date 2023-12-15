@@ -33,4 +33,9 @@ public class StudentController {
     public void addNewStudent(@RequestBody @Valid Student student){
         studentService.addNewStudent(null ,student);
     }
+
+    @GetMapping("/{studentId}/courses")
+    public List<StudentCourse> getAllCoursesForStudent(@PathVariable("studentId") UUID studentId){
+        return studentService.getAllCoursesForStudent(studentId);
+    }
 }
