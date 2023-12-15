@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 @Repository
@@ -46,5 +47,41 @@ public class StudentDataAccessService {
     public boolean isEmailTaken(String email) {
         String sql = "select exists ( select 1 from student where email = ?) " ;
         return Boolean.TRUE.equals(jdbcTemplate.queryForObject(sql, new Object[]{email}, (result, i) -> result.getBoolean(1)));
+    }
+
+
+    public List<StudentCourse> selectAllStudentCourses(UUID studentId) {
+        String sql = "select " +
+                "student.student_id, " +
+                "course.course_id, " +
+                "course.name, " +
+                "course.description, " +
+                "course.department, " +
+                "course.teacher_name, " +
+                "student_course.start_date, " +
+                "student_course.end_date, " +
+                "student_course.grade " +
+                "from student " +
+                "join student_course using (student_id) " +
+                "join course using (course_id) " +
+                "where student.student_id = ?";
+        return jdbcTemplate.query(sql, new Object[]{studentId}, getStudentCourseFromDB());
+    }
+
+    private RowMapper<StudentCourse> getStudentCourseFromDB() {
+        return (resultSet, i) -> {
+            String studentIdStr = resultSet.getString("student_id");
+            UUID studentId = UUID.fromString(studentIdStr);
+            String courseIdStr = resultSet.getString("course_id");
+            UUID courseId = UUID.fromString(courseIdStr);
+            String name = resultSet.getString("name");
+            String description = resultSet.getString("description");
+            String department = resultSet.getString("department");
+            String teacherName = resultSet.getString("teacher_name");
+            LocalDate startDate = resultSet.getDate("start_date").toLocalDate();
+            LocalDate endDate = resultSet.getDate("end_date").toLocalDate();
+            Integer grade = resultSet.getInt("grade");
+            return new StudentCourse(studentId, courseId, startDate, endDate, grade, name, description, teacherName, department);
+        };
     }
 }

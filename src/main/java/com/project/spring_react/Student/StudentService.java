@@ -39,4 +39,8 @@ public class StudentService {
     void addNewStudent(Student student) {
         addNewStudent(null,student);
     }
+
+    public List<StudentCourse> getAllCoursesForStudent(UUID studentId) {
+        return studentDataAccessService.selectAllStudentCourses(studentId);
+    }
 }
