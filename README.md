@@ -1,7 +1,7 @@
 # Spring-Boot-React-Project
 SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + Slack + Unit Testing
 
-
+To use Maven to automatically package front-end files for static display.
 
 ### Version Description
 
@@ -60,4 +60,6 @@ CREATE TABLE IF NOT EXISTS student_course (
 ```
 
 The data will be randomly generated using <a href="https://www.mockaroo.com/">Mockaroo</a>. You can find my SQL file directly in the DB folder.
+
+
 

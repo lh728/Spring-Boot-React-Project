@@ -15,7 +15,7 @@ import java.util.UUID;
  * @Version 1.0
  */
 @RestController
-@RequestMapping("/students")    
+@RequestMapping("api/students")
 public class StudentController {
 
     private final StudentService studentService;
