@@ -1,8 +1,10 @@
 spring:
   datasource:
-    url: jdbc:postgresql://192.168.56.10:5432/student
+    url: jdbc:postgresql://<your AWS endpoint>:5432/student
     username: postgres
-    password: 425658167
+    password: your AWS password
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 30
+server:
+  port: 5000
