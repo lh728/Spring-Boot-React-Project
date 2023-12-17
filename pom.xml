@@ -121,8 +121,10 @@
                     </plugin>
                 </plugins>
             </build>
+            <properties>
+                <spring.profiles.active>demo</spring.profiles.active>
+            </properties>
         </profile>
-
     </profiles>
 
     <build>
