@@ -1,7 +1,9 @@
 # Spring-Boot-React-Project
-SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + Slack + Unit Testing
+Java + SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk + Git + Unit Testing
 
-To use Maven to automatically package front-end files for static display.
+This project is a basic student management system that displays student information using React and Java, allowing for addition operations. Key features include environment configuration and management using Docker, AWS, and Beanstalk.
+
+
 
 ### Version Description
 
@@ -63,3 +65,8 @@ The data will be randomly generated using <a href="https://www.mockaroo.com/">Mo
 
 
 
+### AWS-related
+
+Modify the POM file to use Maven for automatically packaging front-end files for static display.
+
+After registering on AWS, creating an RDS PostgreSQL database, you can set up the Java environment through Beanstalk and configure the EC2 security group.
