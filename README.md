@@ -3,7 +3,9 @@ Java + SpringBoot + React + Maven + Docker + Spring Data + AWS RDS + Beanstalk +
 
 This project is a basic student management system that displays student information using React and Java, allowing for addition operations. Key features include environment configuration and management using Docker, AWS, and Beanstalk.
 
+The project's front-end files are stored in: <a href="https://github.com/lh728/Spring-Boot-React-Project/tree/23d75c840ee628d4a2cdd7184ffb7595a8c12fd1/src/js">`src/js`</a>.
 
+<br/>
 
 ### Version Description
 
@@ -18,7 +20,7 @@ This project is a basic student management system that displays student informat
 - unfetch 4.2.0
 - formik 2.4.5
 
-
+<br/>
 
 ### Database Related
 
@@ -63,10 +65,13 @@ CREATE TABLE IF NOT EXISTS student_course (
 
 The data will be randomly generated using <a href="https://www.mockaroo.com/">Mockaroo</a>. You can find my SQL file directly in the DB folder.
 
-
+<br/>
 
 ### AWS-related
 
 Modify the POM file to use Maven for automatically packaging front-end files for static display.
 
 After registering on AWS, creating an RDS PostgreSQL database, you can set up the Java environment through Beanstalk and configure the EC2 security group.
+
+<br/>
+
